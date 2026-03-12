@@ -12,12 +12,17 @@ import 'package:movies_app/features/home/home_tab/presentation/widget/movie_caro
 
 import '../view_model/home_state.dart';
 
+import 'package:movies_app/features/home/home_tab/presentation/widget/category_row.dart';
+import 'package:movies_app/features/home/home_tab/presentation/widget/horizontal_movies_list.dart';
+import 'package:movies_app/features/home/home_tab/presentation/widget/movie_carousel.dart';
+
 class MainHomeTab extends StatelessWidget {
   const MainHomeTab({super.key});
 
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
+
       create: (context) => HomeBloc(HomeRepoImpl())..add(GetMoviesEvent()),
       child: BlocBuilder<HomeBloc, HomeState>(
         builder: (context, state) {
@@ -37,12 +42,15 @@ class MainHomeTab extends StatelessWidget {
                           child: Image.asset(AppImages.AvailableNow,
                               height: 80.h)),
                       MovieCarousel(movies: state.movies),
+
                       SizedBox(height: 20.h),
                       Center(
                           child: Image.asset(AppImages.WatchNowText,
                               height: 100.h)),
                       const CategoryRow(title: 'Popular Movies'),
+
                       HorizontalMoviesList(movies: state.movies),
+
                       const CategoryRow(title: 'Top Rated Movies'),
                       HorizontalMoviesList(
                           movies: state.movies.reversed.toList()),

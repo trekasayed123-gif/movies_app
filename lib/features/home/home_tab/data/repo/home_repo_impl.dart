@@ -6,10 +6,17 @@ import 'package:movies_app/features/home/home_tab/domain/repo/home_repo.dart';
 
 class HomeRepoImpl implements HomeRepo {
   final Dio dio = Dio();
-
   @override
-  Future<List<MovieModel>> fetchMovies() async {
-    var response = await dio.get(EndPoints.listMovies);
+  Future<List<MovieModel>> fetchMovies({required String genre, required String query}) async {
+    var response = await dio.get(
+      EndPoints.listMovies,
+      // التعديل هنا: إضافة queryParameters لإرسال الكلمة للسيرفر
+      queryParameters: {
+        if (query.isNotEmpty) 'query_term': query,
+        if (genre.isNotEmpty) 'genre': genre,
+      },
+    );
+
     List<MovieModel> movies = [];
     if (response.data['data']['movies'] != null) {
       for (var movie in response.data['data']['movies']) {
@@ -18,4 +25,7 @@ class HomeRepoImpl implements HomeRepo {
     }
     return movies;
   }
+
+
+
 }

@@ -14,10 +14,9 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  // تعريف المتغير المسؤول عن تحديد التاب النشط
+
   int _selectedIndex = 0;
 
-  // قائمة التابات
   final List<Widget> _tabs = [
     const MainHomeTab(),
     const SearchTab(),
@@ -45,3 +44,6 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 }
+
+
+
