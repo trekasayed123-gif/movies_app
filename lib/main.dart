@@ -45,7 +45,10 @@ Future<String> _getInitialRoute() async {
     return AppRoutes.onboardingScreen;
   }
 
-  return (uId != null) ? AppRoutes.homeScreen : AppRoutes.loginScreen;
+
+    return AppRoutes.homeScreen;
+
+  //return (uId != null) ? AppRoutes.homeScreen : AppRoutes.loginScreen;
 }
 
 class MyApp extends StatelessWidget {

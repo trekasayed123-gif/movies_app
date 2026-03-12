@@ -10,7 +10,7 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
     on<GetMoviesEvent>((event, emit) async {
       emit(HomeLoading());
       try {
-        final movies = await homeRepo.fetchMovies(); // جلب البيانات
+        final movies = await homeRepo.fetchMovies(genre: '', query: '' );
         emit(HomeSuccess(movies));
       } catch (e) {
         emit(HomeError(e.toString()));
