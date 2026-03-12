@@ -14,10 +14,9 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  // تعريف المتغير المسؤول عن تحديد التاب النشط
+
   int _selectedIndex = 0;
 
-  // قائمة التابات
   final List<Widget> _tabs = [
     const MainHomeTab(),
     const SearchTab(),
@@ -32,6 +31,22 @@ class _HomeScreenState extends State<HomeScreen> {
       body: Stack(
         children: [
           _tabs[_selectedIndex],
+          CustomBottomNavBar(
+            selectedIndex: _selectedIndex,
+            onTap: (int index) {
+              setState(() {
+                _selectedIndex = index;
+              });
+            },
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+
+
           CustomBottomNavBar(
             selectedIndex: _selectedIndex,
             onTap: (int index) {
